@@ -20,7 +20,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
 
-    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }} 
+    - run: dotnet pack Common.DatabaseInfrastructure.sln --configuration Release --output ${{ env.NuGetDirectory }} 
 
     - uses: actions/upload-artifact@v3
       with: 
