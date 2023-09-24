@@ -21,7 +21,7 @@ jobs:
         echo "VERSION=${GITHUB_REF_NAME#v}" >> $env:GITHUB_ENV
         echo "VERSION=$VERSION" >> $env:GITHUB_ENV
     - name: Build
-      run: dotnet build Common.DatabaseInfrastructure.sln --configuration Release /p:Version=$env:VERSION
+      run: dotnet build Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${{ env:VERSION }}
     - name: Test
       run: dotnet test Common.DatabaseInfrastructure.sln --configuration Release /p:Version=$env:VERSION --no-build
     - name: Pack
