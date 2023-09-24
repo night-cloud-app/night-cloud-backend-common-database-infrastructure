@@ -21,11 +21,11 @@ jobs:
         echo "VERSION=${GITHUB_REF_NAME#v}" >> $env:GITHUB_ENV
         echo "VERSION=$VERSION" >> $env:GITHUB_ENV
     - name: Build
-      run: dotnet build Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${env:VERSION}
+      run: dotnet build Common.DatabaseInfrastructure.sln --configuration Release /p:Version=$env:VERSION
     - name: Test
-      run: dotnet test Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${env:VERSION} --no-build
+      run: dotnet test Common.DatabaseInfrastructure.sln --configuration Release /p:Version=$env:VERSION --no-build
     - name: Pack
-      run: dotnet pack Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${env:VERSION} --no-build --output ./nuget-packages
+      run: dotnet pack Common.DatabaseInfrastructure.sln --configuration Release /p:Version=$env:VERSION --no-build --output ./nuget-packages
     - name: Push
       run: foreach($file in (Get-ChildItem ./nuget-packages -Recurse -Include *.nupkg)) {
         dotnet nuget push $file --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
