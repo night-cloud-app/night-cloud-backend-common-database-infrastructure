@@ -21,6 +21,8 @@ jobs:
     - name: Test
       run: dotnet test Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${VERSION} --no-build
     - name: Pack
-      run: dotnet pack Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${VERSION} --no-build --output .
+      run: dotnet pack Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${VERSION} --no-build --output ./nuget-packages
     - name: Push
-      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key {{ NUGET_APIKEY }}
+      run: foreach($file in (Get-ChildItem ./nuget-packages -Recurse -Include *.nupkg)) {
+        dotnet nuget push $file --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        }
