@@ -26,5 +26,4 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-builg --output .
     - name: Push
-      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg 
-      --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key {{ NUGET_APIKEY }}
+      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key {{ NUGET_APIKEY }}
