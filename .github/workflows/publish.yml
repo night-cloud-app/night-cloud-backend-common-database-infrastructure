@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_and_publish:
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
     - name: Checkout
@@ -24,6 +24,6 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
     - name: Pack
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-builg --output .
+      run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Push
       run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key {{ NUGET_APIKEY }}
