@@ -26,6 +26,6 @@ jobs:
     - name: Pack
       run: dotnet pack Common.DatabaseInfrastructure.sln --configuration Release /p:Version=${{ env.VERSION }} --no-build --output ./nuget-packages
     - name: Push
-      run: foreach($file in (Get-ChildItem ./nuget-packages -Recurse -Include *.nupkg)) {
-        dotnet nuget push $file --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-        }
+      run:  for file in $(find ./nuget-packages -type f -name "*.nupkg"); do
+                dotnet nuget push "$file" --api-key $NUGET_APIKEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+            done
