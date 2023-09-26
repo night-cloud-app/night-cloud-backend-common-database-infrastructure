@@ -28,5 +28,5 @@ jobs:
     - name: Push
       run: | 
         for file in $(find ./nuget-packages -type f -name "*.nupkg"); do
-          dotnet nuget push "$file" --api-key $NUGET_APIKEY --source https://api.nuget.org/v3/index.json --skip-duplicate
+          dotnet nuget push {{ $file }} --api-key $NUGET_APIKEY --source https://api.nuget.org/v3/index.json --skip-duplicate
         done
