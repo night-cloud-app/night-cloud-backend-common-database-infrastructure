@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <EnablePackageValidation>true</EnablePackageValidation>
+        <RootNamespace>NightCloud.Common.DatabaseInfrastructure</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
